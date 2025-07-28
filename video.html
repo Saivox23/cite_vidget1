@@ -6,6 +6,7 @@
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       background: black;
     }
     video {
@@ -17,8 +18,21 @@
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
+  <video id="v" muted playsinline loop autoplay>
     <source src="https://rawcdn.githack.com/Saivox23/cite_vidget1/9183f113e15eaf21950cf2b17cff6436ae889359/123.mp4" type="video/mp4">
   </video>
+
+  <script>
+    // Принудительно запускаем видео через JavaScript
+    const v = document.getElementById("v");
+    document.addEventListener("DOMContentLoaded", function () {
+      const playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Автовоспроизведение не сработало
+        });
+      }
+    });
+  </script>
 </body>
 </html>
